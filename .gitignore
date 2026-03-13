@@ -1,0 +1,9 @@
+# Ignore Eclipse metadata
+.metadata/
+target/
+*.class
+
+# Ignore build files
+*.log
+*.tmp
+*.bak

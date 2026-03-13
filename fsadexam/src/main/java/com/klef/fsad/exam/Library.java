@@ -4,34 +4,56 @@ import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "library")
+@Table(name="library")
 public class Library {
-    
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    
+
     private String name;
     private String description;
-    
+
     @Temporal(TemporalType.DATE)
     private Date date;
-    
+
     private String status;
 
-    // Getters and Setters
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
+    public Library() {}
 
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+    public int getId() {
+        return id;
+    }
 
-    public String getDescription() { return description; }
-    public void setDescription(String description) { this.description = description; }
+    public String getName() {
+        return name;
+    }
 
-    public Date getDate() { return date; }
-    public void setDate(Date date) { this.date = date; }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    public String getStatus() { return status; }
-    public void setStatus(String status) { this.status = status; }
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }

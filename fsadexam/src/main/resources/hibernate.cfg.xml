@@ -1,23 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-configuration PUBLIC
-        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
-        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 
 <hibernate-configuration>
     <session-factory>
-        <!-- Database connection -->
+
+        <!-- Database connection settings -->
         <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/fsadexam</property>
         <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.connection.password">yourpassword</property>
+        <property name="hibernate.connection.password">12345</property>
 
-        <!-- Dialect -->
+        <!-- SQL dialect -->
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 
-        <!-- Show SQL in console -->
+        <!-- Automatically update database schema -->
+        <property name="hibernate.hbm2ddl.auto">update</property>
+
+        <!-- Show SQL commands in console -->
         <property name="hibernate.show_sql">true</property>
 
-        <!-- Auto schema update -->
-        <property name="hibernate.hbm2ddl.auto">update</property>
+        <!-- Mapping class -->
+        <mapping class="com.klef.fsad.exam.Library"/>
+
     </session-factory>
 </hibernate-configuration>

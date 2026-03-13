@@ -1,45 +1,61 @@
 package com.klef.fsad.exam;
 
 import org.hibernate.Session;
-import org.hibernate.Transaction;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
 import java.util.Date;
 
-public class ClientDemo {
-    public static void main(String[] args) {
-        insertRecord();
-        deleteRecord(1); // Example: delete record with ID=1
-    }
+public class ClientDemo
+{
 
-    public static void insertRecord() {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction tx = session.beginTransaction();
+public static void main(String[] args)
+{
 
-        Library lib = new Library();
-        lib.setName("Digital Library");
-        lib.setDescription("Contains e-books and journals");
-        lib.setDate(new Date());
-        lib.setStatus("Active");
+SessionFactory factory =
+new Configuration().configure().buildSessionFactory();
 
-        session.persist(lib);
-        tx.commit();
-        session.close();
+Session session = factory.openSession();
 
-        System.out.println("Record Inserted Successfully!");
-    }
+session.beginTransaction();
 
-    public static void deleteRecord(int id) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction tx = session.beginTransaction();
+/*// INSERT RECORD
 
-        Library lib = session.get(Library.class, id);
-        if (lib != null) {
-            session.remove(lib);
-            System.out.println("Record Deleted Successfully!");
-        } else {
-            System.out.println("Record Not Found!");
-        }
+Library lib = new Library();
 
-        tx.commit();
-        session.close();
-    }
+lib.setName("Database Systems");
+lib.setDescription("DBMS Book");
+lib.setDate(new Date());
+lib.setStatus("Available");
+
+Library lib2 = new Library();
+lib2.setName("Python Programming");   // your new record
+lib2.setDescription("Python Book");
+lib2.setDate(new Date());
+lib2.setStatus("Available");
+session.persist(lib2);
+session.persist(lib);
+
+session.getTransaction().commit();
+
+System.out.println("Record Inserted Successfully");
+*/
+// DELETE RECORD
+
+session.beginTransaction();
+
+Library l = session.get(Library.class,1);
+
+if(l != null)
+{
+session.remove(l);
+System.out.println("Record Deleted Successfully");
+}
+
+session.getTransaction().commit();
+
+session.close();
+factory.close();
+
+}
 }
